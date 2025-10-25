@@ -6,3 +6,4 @@ rm(list=ls())
 x = 5
 y = 10
 cat(x + y)
+

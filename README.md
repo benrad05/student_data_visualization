@@ -2,17 +2,16 @@
 ## Student grades exploratory data analysis 
 
 ## Statistical questions: 
-1. Do families of students influence their academic performance? (Later...)
-  - Box Plot / Bar Chart --> Medu, Fedu, famsup, G3
+1. What percentage of students from each school want to persue higher education? 
+  - Bar Chart
   
-2. Do students with more active lifestyles tend to perform worse in school? (Daniel)
-  - Scatter Plot --> goout, freetime, activities, G3
+2. Does the distribution of the scores change from the first quarter of the semester to the final? 
+  - Histogram
   
 3. Does quality of family relationship correlate with a student's absences?
-  - Heatmap / Bar Chart --> absences vs. numeric vars
+  - Box Plot 
   
-4. What is the average commute time that students who choose a school based on location? (Ben)
-  - Bar Chart --> reason, traveltime
+4. Are the number of previously failed classes associeate with a bad academic performance?
+  - Scatter Plot
   
-5. Do number of previous failed classes affect a student's academic performance? (Daniel)
-  - Box Plot / Histogram --> failures, G3
+5. 

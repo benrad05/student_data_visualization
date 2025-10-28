@@ -3,7 +3,6 @@
 # Daniel Toro and Ben Radoslovich 
 
 rm(list=ls())
-
 library(ggplot2) 
 
 readLines("data/student-mat.csv")

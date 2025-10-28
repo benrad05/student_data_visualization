@@ -14,4 +14,13 @@ df <- read.csv("data/student-mat.csv",
                stringsAsFactors = TRUE)
 
 
+ggplot(data=df) +
+  geom_histogram(aes(x= G3), fill = 'red', bins = 20, color = "red", alpha = 0.3)+
+  geom_histogram(aes(x= G1), fill = 'blue', bins = 20, color = "blue", alpha = 0.3)+
+  labs(
+    title = "",
+    x = "",
+    y = ""
+  ) +
+  annotate("text", x=2, y=45, label = "failed students", color= "red")
 

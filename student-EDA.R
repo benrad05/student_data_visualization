@@ -3,7 +3,7 @@
 # Daniel Toro and Ben Radoslovich 
 
 rm(list=ls())
-library(ggplot2) 
+source("./functions.R")
 
 # Read csv and create data frame
 readLines("data/student-mat.csv")
@@ -13,16 +13,5 @@ df <- read.csv("data/student-mat.csv",
                header = TRUE,    
                stringsAsFactors = TRUE)
 
-grade_distribution = function(df) {
-  ggplot(data=df) +
-    geom_histogram(aes(x= G3), fill = 'red', bins = 20, color = "red", alpha = 0.3)+
-    geom_histogram(aes(x= G1), fill = 'blue', bins = 20, color = "blue", alpha = 0.3)+
-    labs(
-      title = "",
-      x = "",
-      y = ""
-    ) +
-    annotate("text", x=2, y=45, label = "failed students", color= "red")
-}
 
 grade_distribution(df)

@@ -1,9 +1,9 @@
 library(ggplot2) 
 
+
 # 1. What percentage of students from each school 
 #    want to pursue higher education? 
 higher_education_chart = function(df) {
-  
   ggplot(data = df, aes(x = higher, fill = higher)) +
     geom_bar() +
     facet_wrap(~ school, 
@@ -23,7 +23,9 @@ higher_education_chart = function(df) {
     theme_minimal(base_size = 12) +
     theme(
       # Title Styling
-      plot.title = element_text(face = "bold", margin = margin(t = 5, b = 5)),
+      plot.title = element_text(face = "bold", 
+                                hjust = 0.5,
+                                margin = margin(t = 5, b = 5)),
   
       # Legend Styling
       legend.position = "top",
@@ -93,7 +95,6 @@ grade_distribution <- function(df) {
         linetype = "solid"    # border style
       ),
       
-      
       #Remove grid lines
       panel.grid.minor = element_blank(),
       panel.grid.major.x = element_blank()
@@ -142,6 +143,7 @@ famrel_box <- function(df){
   
 }
 
+
 #3b.
 study_box <- function(df){
   ggplot(df, aes(x = factor(studytime), y = G3)) +
@@ -174,3 +176,23 @@ study_box <- function(df){
   
 }
 
+
+# 4. Are the number of previously failed classes associated with a bad academic performance?
+failures_grade_correlation = function(df) {
+  ggplot(data = df, 
+         aes(x = failures, y = G3)) +
+    geom_point(color = "#2E86C1", 
+               size = 3, 
+               alpha = 0.7) +
+    labs(
+      title = "Final grade of students with previously failed courses",
+      y = "Final Grade",
+      x = "Number of previously failed classes"
+    ) +
+    theme_minimal(base_size = 12) +
+    theme(
+      plot.title = element_text(face = "bold", 
+                                hjust = 0.5,
+                                margin = margin(t = 5, b = 5))
+    )
+}

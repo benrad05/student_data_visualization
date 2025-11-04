@@ -2,7 +2,7 @@
 ## Student grades exploratory data analysis 
 
 ## Statistical questions: 
-1. What percentage of students from each school want to persue higher education? 
+1. What percentage of students from each school want to pursue higher education? 
   - Bar Chart
   
 2. Does the distribution of the scores change from the first quarter of the semester to the final? 

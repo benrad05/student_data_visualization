@@ -13,11 +13,11 @@ df <- read.csv("data/student-mat.csv",
                header = TRUE,    
                stringsAsFactors = TRUE)
 
+# Graph for
+higher_education_chart(df)
 
-<<<<<<< HEAD
+# Graph for problem 2
 grade_distribution(df)
 grade_distribution_facet(df)
-=======
 
-higher_education_chart(df)
->>>>>>> refs/remotes/origin/main
+

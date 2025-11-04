@@ -11,7 +11,7 @@
 3. Does quality of family relationship correlate with a student's absences?
   - Box Plot 
   
-4. Are the number of previously failed classes associeate with a bad academic performance?
+4. Are the number of previously failed classes associate with a bad academic performance?
   - Scatter Plot
   
 5. 

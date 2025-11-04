@@ -13,11 +13,13 @@ df <- read.csv("data/student-mat.csv",
                header = TRUE,    
                stringsAsFactors = TRUE)
 
-# Graph for
+# Bar chart for no. students by school & higher education plan
 higher_education_chart(df)
 
-# Graph for problem 2
+
+# Histogram chart for distribution of grades accross Q1,Q2, & Q3
 grade_distribution(df)
-grade_distribution_facet(df)
 
-
+# Box plot for correlation between family relationship & student absences 
+famrel_box(df)
+study_box(df)

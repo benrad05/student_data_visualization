@@ -14,4 +14,5 @@ df <- read.csv("data/student-mat.csv",
                stringsAsFactors = TRUE)
 
 
-grade_distribution(df)
+
+higher_education_chart(df)

@@ -15,3 +15,4 @@ df <- read.csv("data/student-mat.csv",
 
 
 grade_distribution(df)
+grade_distribution_facet(df)

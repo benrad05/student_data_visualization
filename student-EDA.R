@@ -14,10 +14,9 @@ df <- read.csv("data/student-mat.csv",
                stringsAsFactors = TRUE)
 
 
-<<<<<<< HEAD
 grade_distribution(df)
-grade_distribution_facet(df)
-=======
 
 higher_education_chart(df)
->>>>>>> refs/remotes/origin/main
+
+famrel_box(df)
+study_box(df)

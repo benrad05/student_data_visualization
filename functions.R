@@ -103,7 +103,7 @@ grade_distribution <- function(df) {
 
 
 
-#3a. Does quality of family relationship correlate with a student's absences?
+# 3a. Does quality of family relationship correlate with a student's absences?
 #- Box Plot 
 famrel_box <- function(df){
   ggplot(df, aes(x = factor(famrel), y = absences)) +
@@ -144,7 +144,8 @@ famrel_box <- function(df){
   
 }
 
-#3b.
+
+# 3b.
 study_box <- function(df){
   ggplot(df, aes(x = factor(studytime), y = G3)) +
     geom_boxplot(
@@ -182,8 +183,8 @@ failures_grade_correlation = function(df) {
   ggplot(data = df, 
          aes(x = failures, y = G3)) +
     geom_jitter(color = "#2E86C1",
-                size = 3,
-                alpha = 0.7,
+                size = 2.5,
+                alpha = 0.5,
                 width = 0.4,
                 height = 0.4) +
     

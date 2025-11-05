@@ -13,5 +13,11 @@
   
 4. Are the number of previously failed classes associated with a bad academic performance?
   - Scatter Plot
+  #Should use geom_jitter because if y dependent variable is discrete not a proper scatter plot
   
-5. 
+5.
+-Prop table 
+
+Does higher study time leader to a higher grade
+#Ex prop table 
+#or summary x

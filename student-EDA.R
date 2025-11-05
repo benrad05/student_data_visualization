@@ -15,12 +15,17 @@ df <- read.csv("data/student-mat.csv",
 # Bar chart for no. students by school & higher education plan
 higher_education_chart(df)
 
-# Histogram chart for distribution of grades accross Q1,Q2, & Q3
+# Histogram chart for distribution of grades accross Q1 & Q3
 grade_distribution(df)
 
 # Box plot for correlation between family relationship & student absences 
 famrel_box(df)
+
+#Box plot for correlation between study time and final Grade 
 study_box(df)
 
 # Scatter plot for showing correlation between past failed classes and performance
 failures_grade_correlation(df) 
+
+#Statistical summary of study time vs final grade 
+study_summary_base(df)

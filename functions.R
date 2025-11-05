@@ -53,7 +53,7 @@ grade_distribution <- function(df) {
     geom_histogram(
       data = df,
       aes(x = G1, y = after_stat(count), fill = "Quarter 1 Grades"),
-      bins = 20,
+      breaks = seq(0, 22, by = 2),   # bins: 0–2, 2–4, ..., 20–22
       color = "black",
       alpha = 0.8
     ) +
@@ -61,7 +61,7 @@ grade_distribution <- function(df) {
     geom_histogram(
       data = df,
       aes(x = G3, y = -after_stat(count), fill = "Final Grades"),
-      bins = 20,
+      breaks = seq(0, 22, by = 2),   # same bins for G3
       color = "black",
       alpha = 0.8
     ) +
@@ -77,7 +77,7 @@ grade_distribution <- function(df) {
       y = "Number of Students",
       fill = "Grade Type"
     ) +
-    theme_minimal(base_size=12) +
+    theme_minimal(base_size = 12) +
     theme(
       # Title Styling
       plot.title = element_text(face = "bold", 
@@ -95,11 +95,12 @@ grade_distribution <- function(df) {
         linetype = "solid"    # border style
       ),
       
-      #Remove grid lines
+      # Remove grid lines
       panel.grid.minor = element_blank(),
       panel.grid.major.x = element_blank()
     )
 }
+
 
 
 #3a. Does quality of family relationship correlate with a student's absences?
@@ -143,14 +144,13 @@ famrel_box <- function(df){
   
 }
 
-
 #3b.
 study_box <- function(df){
   ggplot(df, aes(x = factor(studytime), y = G3)) +
     geom_boxplot(
       fill = "#4CAF50",
       alpha = 0.8,
-      outlier.shape = NA
+      #outlier.shape = NA
     ) +
     scale_x_discrete(
       labels = c(
@@ -181,9 +181,18 @@ study_box <- function(df){
 failures_grade_correlation = function(df) {
   ggplot(data = df, 
          aes(x = failures, y = G3)) +
-    geom_point(color = "#2E86C1", 
-               size = 3, 
-               alpha = 0.7) +
+    geom_jitter(color = "#2E86C1",
+                size = 3,
+                alpha = 0.7,
+                width = 0.4,
+                height = 0.4) +
+    
+    # Add linear regression line
+    geom_smooth(method = "lm", 
+                color = "red",
+                se=FALSE,
+                size = 1.2) +
+    
     labs(
       title = "Final grade of students with previously failed courses",
       y = "Final Grade",
@@ -196,3 +205,40 @@ failures_grade_correlation = function(df) {
                                 margin = margin(t = 5, b = 5))
     )
 }
+
+study_summary_base <- function(df) {
+  # Count of students per studytime
+  counts <- table(df$studytime)
+  
+  # Proportion of students per category
+  props <- prop.table(counts)
+  
+  # Mean final grade by studytime
+  mean_G3 <- tapply(df$G3, df$studytime, mean, na.rm = TRUE)
+  
+  # Standard deviation
+  sd_G3 <- tapply(df$G3, df$studytime, sd, na.rm = TRUE)
+  
+  # Median
+  median_G3 <- tapply(df$G3, df$studytime, median, na.rm = TRUE)
+  
+  # Min and Max
+  min_G3 <- tapply(df$G3, df$studytime, min, na.rm = TRUE)
+  max_G3 <- tapply(df$G3, df$studytime, max, na.rm = TRUE)
+  
+  # Combine into a data frame
+  summary_df <- data.frame(
+    studytime = as.numeric(names(counts)),
+    count = as.numeric(counts),
+    prop = as.numeric(props),
+    mean_G3 = as.numeric(mean_G3),
+    sd_G3 = as.numeric(sd_G3),
+    median_G3 = as.numeric(median_G3),
+    min_G3 = as.numeric(min_G3),
+    max_G3 = as.numeric(max_G3)
+  )
+  
+  return(summary_df)
+}
+
+

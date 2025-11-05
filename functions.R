@@ -144,38 +144,6 @@ famrel_box <- function(df){
   
 }
 
-#3b.
-study_box <- function(df){
-  ggplot(df, aes(x = factor(studytime), y = G3)) +
-    geom_boxplot(
-      fill = "#4CAF50",
-      alpha = 0.8,
-      #outlier.shape = NA
-    ) +
-    scale_x_discrete(
-      labels = c(
-        "1" = "<2 hours",
-        "2" = "2-5 hours",
-        "3" = "5-10 hours",
-        "4" = ">10 hours"
-      )
-    ) +
-    labs(
-      title = "Final Grade by Study Time",
-      x = "Study Time",
-      y = "Final Grade"
-    ) +
-    theme_minimal(base_size = 12) +
-    theme(
-      # Title Styling
-      plot.title = element_text(face = "bold", 
-                                hjust = 0.5),
-      panel.grid.major.x = element_blank(),  # remove major grid lines
-      panel.grid.minor = element_blank()   # remove minor grid lines
-    )
-  
-}
-
 
 # 4. Are the number of previously failed classes associated with a bad academic performance?
 failures_grade_correlation = function(df) {
@@ -189,7 +157,7 @@ failures_grade_correlation = function(df) {
     
     # Add linear regression line
     geom_smooth(method = "lm", 
-                color = "red",
+                color = "#E74C3C",
                 se=FALSE,
                 size = 1.2) +
     
@@ -206,7 +174,7 @@ failures_grade_correlation = function(df) {
     )
 }
 
-study_summary_base <- function(df) {
+study_summary <- function(df) {
   # Count of students per studytime
   counts <- table(df$studytime)
   
@@ -214,31 +182,33 @@ study_summary_base <- function(df) {
   props <- prop.table(counts)
   
   # Mean final grade by studytime
-  mean_G3 <- tapply(df$G3, df$studytime, mean, na.rm = TRUE)
-  
+  mean_G3 = tapply(df$G3, df$studytime, mean)
   # Standard deviation
-  sd_G3 <- tapply(df$G3, df$studytime, sd, na.rm = TRUE)
+  sd_G3 = tapply(df$G3, df$studytime, sd)
   
   # Median
-  median_G3 <- tapply(df$G3, df$studytime, median, na.rm = TRUE)
+  median_G3 = tapply(df$G3, df$studytime, median)
   
   # Min and Max
-  min_G3 <- tapply(df$G3, df$studytime, min, na.rm = TRUE)
-  max_G3 <- tapply(df$G3, df$studytime, max, na.rm = TRUE)
+  min_G3 = tapply(df$G3, df$studytime, min)
+  max_G3 = tapply(df$G3, df$studytime, max)
   
   # Combine into a data frame
   summary_df <- data.frame(
-    studytime = as.numeric(names(counts)),
-    count = as.numeric(counts),
-    prop = as.numeric(props),
-    mean_G3 = as.numeric(mean_G3),
-    sd_G3 = as.numeric(sd_G3),
-    median_G3 = as.numeric(median_G3),
-    min_G3 = as.numeric(min_G3),
-    max_G3 = as.numeric(max_G3)
+    Study_Time = c("<2 Hours", "2-5 Hours", "5-10 Hours", ">10 Hours"),
+    Students = as.numeric(counts),
+    Percent = round(100 * as.numeric(props), 1),
+    Mean_Grade = round(as.numeric(mean_G3), 1),
+    Std_Dev = round(as.numeric(sd_G3), 1),
+    Median = round(as.numeric(median_G3), 1),
+    Min = as.numeric(min_G3),
+    Max = as.numeric(max_G3)
   )
   
   return(summary_df)
 }
+
+
+  
 
 

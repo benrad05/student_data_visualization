@@ -72,7 +72,7 @@ grade_distribution <- function(df) {
                  "Final Grades" = "#4CAF50") 
     ) +
     labs(
-      title = "Distribution of Midterm vs Final Grades",
+      title = "Distribution of First Quarter vs Final Grades",
       x = "Grade",
       y = "Number of Students",
       fill = "Grade Type"
@@ -178,32 +178,32 @@ study_summary <- function(df) {
   # Proportion of students per category
   props <- prop.table(counts)
   
-  # Mean final grade by studytime
-  mean_G3 = tapply(df$G3, df$studytime, mean)
-  # Standard deviation
-  sd_G3 = tapply(df$G3, df$studytime, sd)
-  
-  # Median
-  median_G3 = tapply(df$G3, df$studytime, median)
-  
-  # Min and Max
-  min_G3 = tapply(df$G3, df$studytime, min)
-  max_G3 = tapply(df$G3, df$studytime, max)
+  # Summary statistics by studytime
+  mean_G3   <- tapply(df$G3, df$studytime, mean)
+  sd_G3     <- tapply(df$G3, df$studytime, sd)
+  median_G3 <- tapply(df$G3, df$studytime, median)
+  min_G3    <- tapply(df$G3, df$studytime, min)
+  max_G3    <- tapply(df$G3, df$studytime, max)
+  q1_G3     <- tapply(df$G3, df$studytime, quantile, probs = 0.25)
+  q3_G3     <- tapply(df$G3, df$studytime, quantile, probs = 0.75)
   
   # Combine into a data frame
   summary_df <- data.frame(
-    Study_Time = c("<2 Hours", "2-5 Hours", "5-10 Hours", ">10 Hours"),
-    Students = as.numeric(counts),
-    Percent = round(100 * as.numeric(props), 1),
+    Study_Time = c("<2 Hours", "2–5 Hours", "5–10 Hours", ">10 Hours"),
+    Students   = as.numeric(counts),
+    Percent    = round(100 * as.numeric(props), 1),
     Mean_Grade = round(as.numeric(mean_G3), 1),
-    Std_Dev = round(as.numeric(sd_G3), 1),
-    Median = round(as.numeric(median_G3), 1),
-    Min = as.numeric(min_G3),
-    Max = as.numeric(max_G3)
+    Std_Dev    = round(as.numeric(sd_G3), 1),
+    Q1         = round(as.numeric(q1_G3), 1),
+    Median     = round(as.numeric(median_G3), 1),
+    Q3         = round(as.numeric(q3_G3), 1),
+    Min        = as.numeric(min_G3),
+    Max        = as.numeric(max_G3)
   )
   
   return(summary_df)
 }
+
 
 
   

@@ -2,7 +2,7 @@
 ## Student grades exploratory data analysis 
 
 ## Statistical questions: 
-1. What percentage of students from each school want to pursue higher education? 
+1. How many students from each school want to pursue higher education? 
   - Bar Chart
   
 2. Does the distribution of the scores change from the first quarter of the semester to the final? 
@@ -15,6 +15,6 @@
   - Scatter Plot
   - Should use geom_jitter because if y dependent variable is discrete not a proper scatter plot
   
-5.Does higher study time leader to a higher grade
+5. Does higher study time leader to a higher grade
   - Ex prop table or summary x
 

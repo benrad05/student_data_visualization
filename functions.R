@@ -140,39 +140,6 @@ famrel_box <- function(df){
 }
 
 
-# 3b.
-study_box <- function(df){
-  ggplot(df, aes(x = factor(studytime), y = G3)) +
-    geom_boxplot(
-      fill = "#4CAF50",
-      alpha = 0.8,
-      #outlier.shape = NA
-    ) +
-    scale_x_discrete(
-      labels = c(
-        "1" = "<2 hours",
-        "2" = "2-5 hours",
-        "3" = "5-10 hours",
-        "4" = ">10 hours"
-      )
-    ) +
-    labs(
-      title = "Final Grade by Study Time",
-      x = "Study Time",
-      y = "Final Grade"
-    ) +
-    theme_minimal(base_size = 12) +
-    theme(
-      # Title Styling
-      plot.title = element_text(face = "bold", 
-                                hjust = 0.5),
-      panel.grid.major.x = element_blank(),  # remove major grid lines
-      panel.grid.minor = element_blank()   # remove minor grid lines
-    )
-  
-}
-
-
 # 4. Are the number of previously failed classes associated with a bad academic performance?
 failures_grade_correlation = function(df) {
   ggplot(data = df, 
@@ -203,7 +170,7 @@ failures_grade_correlation = function(df) {
 }
 
 
-# 5. 
+# 5. Does higher study time leader to a higher grade
 study_summary <- function(df) {
   # Count of students per studytime
   counts <- table(df$studytime)

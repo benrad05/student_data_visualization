@@ -102,7 +102,6 @@ grade_distribution <- function(df) {
 }
 
 
-
 # 3a. Does quality of family relationship correlate with a student's absences?
 #- Box Plot 
 famrel_box <- function(df){
@@ -138,10 +137,6 @@ famrel_box <- function(df){
       panel.grid.major = element_blank(),  # remove major grid lines
       panel.grid.minor = element_blank()   # remove minor grid lines
     )
-  
-  
-  
-  
 }
 
 
@@ -190,7 +185,7 @@ failures_grade_correlation = function(df) {
     
     # Add linear regression line
     geom_smooth(method = "lm", 
-                color = "red",
+                color = "#E74C3C",
                 se=FALSE,
                 size = 1.2) +
     
@@ -207,7 +202,9 @@ failures_grade_correlation = function(df) {
     )
 }
 
-study_summary_base <- function(df) {
+
+# 5. 
+study_summary <- function(df) {
   # Count of students per studytime
   counts <- table(df$studytime)
   
@@ -215,31 +212,33 @@ study_summary_base <- function(df) {
   props <- prop.table(counts)
   
   # Mean final grade by studytime
-  mean_G3 <- tapply(df$G3, df$studytime, mean, na.rm = TRUE)
-  
+  mean_G3 = tapply(df$G3, df$studytime, mean)
   # Standard deviation
-  sd_G3 <- tapply(df$G3, df$studytime, sd, na.rm = TRUE)
+  sd_G3 = tapply(df$G3, df$studytime, sd)
   
   # Median
-  median_G3 <- tapply(df$G3, df$studytime, median, na.rm = TRUE)
+  median_G3 = tapply(df$G3, df$studytime, median)
   
   # Min and Max
-  min_G3 <- tapply(df$G3, df$studytime, min, na.rm = TRUE)
-  max_G3 <- tapply(df$G3, df$studytime, max, na.rm = TRUE)
+  min_G3 = tapply(df$G3, df$studytime, min)
+  max_G3 = tapply(df$G3, df$studytime, max)
   
   # Combine into a data frame
   summary_df <- data.frame(
-    studytime = as.numeric(names(counts)),
-    count = as.numeric(counts),
-    prop = as.numeric(props),
-    mean_G3 = as.numeric(mean_G3),
-    sd_G3 = as.numeric(sd_G3),
-    median_G3 = as.numeric(median_G3),
-    min_G3 = as.numeric(min_G3),
-    max_G3 = as.numeric(max_G3)
+    Study_Time = c("<2 Hours", "2-5 Hours", "5-10 Hours", ">10 Hours"),
+    Students = as.numeric(counts),
+    Percent = round(100 * as.numeric(props), 1),
+    Mean_Grade = round(as.numeric(mean_G3), 1),
+    Std_Dev = round(as.numeric(sd_G3), 1),
+    Median = round(as.numeric(median_G3), 1),
+    Min = as.numeric(min_G3),
+    Max = as.numeric(max_G3)
   )
   
   return(summary_df)
 }
+
+
+  
 
 
